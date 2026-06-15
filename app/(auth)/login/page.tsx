@@ -44,7 +44,7 @@ export default function LoginPage() {
     const { data, error } = await supabase.auth.verifyOtp({
       email: email,
       token: otp,
-      type: 'magiclink',
+      type: 'email',
     });
 
     // FIX: Helper function to securely inject the Full Name into the database 
@@ -109,7 +109,13 @@ export default function LoginPage() {
           </div>
         )}
 
-        {/* NEW: Full Name Block */}
+       
+
+        {/* Step 1: Email Form */}
+        {step === 1 && (
+          <form onSubmit={handleSendCode} className="flex flex-col gap-6">
+
+             {/* NEW: Full Name Block */}
             <div className="flex flex-col gap-2">
               <label htmlFor="fullName" className="text-[15px] font-medium text-ink">
                 Full Name
@@ -125,9 +131,6 @@ export default function LoginPage() {
               />
             </div>
 
-        {/* Step 1: Email Form */}
-        {step === 1 && (
-          <form onSubmit={handleSendCode} className="flex flex-col gap-6">
             <div className="flex flex-col gap-2">
               <label htmlFor="email" className="text-[15px] font-medium text-ink">
                 Email Address
