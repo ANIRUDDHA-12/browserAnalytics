@@ -13,13 +13,13 @@ export async function GlobalHeader() {
     if(user){
       const { data: profile } = await supabase
       .from('profiles')
-      .select('name')
+      .select('full_name')
       .eq('id', user.id)
       .single();
 
-      if (profile?.name) {
-      profileName = profile.name;
-      initial = profile.name.charAt(0).toUpperCase();
+      if (profile?.full_name) {
+      profileName = profile.full_name;
+      initial = profile.full_name.charAt(0).toUpperCase();
     } else if (user.email) {
       initial = user.email.charAt(0).toUpperCase();
     }
@@ -43,9 +43,6 @@ export async function GlobalHeader() {
         <Link href="/dashboard" className="text-ink font-medium tracking-[-0.02em] hover:text-signal transition-colors">
           Dashboard
         </Link>
-        {/* <Link href="/projects" className="text-ink font-medium tracking-[-0.02em] hover:text-signal transition-colors">
-          Projects
-        </Link> */}
         <Link href="/dashboard/settings" className="text-ink font-medium tracking-[-0.02em] hover:text-signal transition-colors">
           Settings
         </Link>

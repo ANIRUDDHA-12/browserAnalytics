@@ -14,7 +14,7 @@ export default async function SettingsPage() {
   // Fetch their current profile from the database
   const { data: profile } = await supabase
     .from('profiles')
-    .select('name')
+    .select('full_name')
     .eq('id', user.id)
     .single();
 
@@ -32,7 +32,7 @@ export default async function SettingsPage() {
     if (user) {
       await supabaseServer
         .from('profiles')
-        .update({ name: newName })
+        .update({ full_name: newName })
         .eq('id', user.id);
         
       // Tell Next.js to refresh the page so the new name instantly shows up
@@ -89,7 +89,7 @@ export default async function SettingsPage() {
               <input 
                 type="text" 
                 name="name" 
-                defaultValue={profile?.name || ''} 
+                defaultValue={profile?.full_name || ''} 
                 placeholder="Your full name" 
                 className="w-full bg-[#ffffff] border-[1.5px] border-[#141413] text-[#141413] rounded-[12px] px-4 py-3 font-medium focus:outline-none focus:ring-2 focus:ring-[#141413]/10 transition-shadow" 
                 required 

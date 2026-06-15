@@ -1,5 +1,5 @@
 (function () {
-  const API_URL = 'http://localhost:3000/api/feedback'; 
+  const API_URL = 'https://browser-analytics-eta.vercel.app/auth/callback'; 
   let html2canvasLoaded = false;
 
   const scriptTag = document.currentScript || document.querySelector('script[src*="widget.js"]');
