@@ -60,9 +60,10 @@ export default function FeedbackViewer({project,initialFeedback}:{project:Projec
 
           {/* Active Integration Script Utility Box */}
           <div className="bg-[#FCFBFA] border-[1.5px] border-[#141413] rounded-[20px] p-4 text-xs font-mono text-[#141413] max-w-md">
-            <span className="font-sans font-bold block text-[#696969] uppercase tracking-wider mb-1">Your Widget Script Token</span>
-            {`<script src="https://feedloop.io/widget.js" data-project-id="${project.id}"></script>`}
-          </div>
+         <span className="font-sans font-bold block text-[#696969] uppercase tracking-wider mb-1">Your Widget Script Token</span>
+      {/* Dynamically pulls the domain from Vercel or localhost, and includes 'defer' */}
+      {`<script src="${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/widget.js" data-project-id="${project.id}" defer></script>`}
+      </div>
         </div>
       </div>
 
